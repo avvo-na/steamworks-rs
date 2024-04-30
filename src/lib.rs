@@ -250,6 +250,14 @@ impl Client<ClientManager> {
         std::env::set_var("SteamGameId", app_id);
         Client::init()
     }
+
+    /// Shuts down the steamworks api and immediately releases all
+    /// resources used by the api.
+    pub fn shutdown() {
+        unsafe {
+            sys::SteamAPI_Shutdown();
+        }
+    }
 }
 impl<M> SingleClient<M>
 where
